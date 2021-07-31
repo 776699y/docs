@@ -402,6 +402,8 @@ workflows:
 <td class="d-table-cell v-align-top">
 {% raw %}
 ```yaml
+{% endraw %}{% data reusables.actions.actions-not-certified-by-github-comment %}{% raw %}
+
 name: Containers
 
 on: [push]
@@ -435,7 +437,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup Ruby
-        uses: eregon/use-ruby-action@master
+        uses: eregon/use-ruby-action@477b21f02be01bcb8030d50f37cfec92bfa615b6
         with:
           ruby-version: ${{ matrix.ruby }}
       - name: Cache dependencies

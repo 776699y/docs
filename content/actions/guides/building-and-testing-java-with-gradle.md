@@ -47,8 +47,9 @@ To get started quickly, you can choose the preconfigured Gradle template when yo
 
 You can also add this workflow manually by creating a new file in the `.github/workflows` directory of your repository.
 
-{% raw %}
 ```yaml{:copy}
+{% data reusables.actions.actions-not-certified-by-github-comment %}
+
 name: Java CI
 
 on: [push]
@@ -65,11 +66,10 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v1
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Build with Gradle
         run: ./gradlew build
 ```
-{% endraw %}
 
 This workflow performs the following steps:
 
@@ -101,7 +101,7 @@ steps:
       java-version: '11'
       distribution: 'adopt'
   - name: Validate Gradle wrapper
-    uses: gradle/wrapper-validation-action@v1
+    uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
   - name: Run the Gradle package task
     run: ./gradlew -b ci.gradle package
 ```
@@ -121,7 +121,7 @@ steps:
       java-version: '11'
       distribution: 'adopt'
   - name: Validate Gradle wrapper
-    uses: gradle/wrapper-validation-action@v1
+    uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
   - name: Cache Gradle packages
     uses: actions/cache@v2
     with:
@@ -159,7 +159,7 @@ steps:
       java-version: '11'
       distribution: 'adopt'
   - name: Validate Gradle wrapper
-    uses: gradle/wrapper-validation-action@v1
+    uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
   - run: ./gradlew build
   - uses: actions/upload-artifact@v2
     with:

@@ -93,7 +93,7 @@ Create a new workflow file in your repository (such as `.github/workflows/deploy
 ```yaml{:copy}
 name: Create and publish a Docker image
 
-{% data reusables.actions.actions-not-certified-by-github %}
+{% data reusables.actions.actions-not-certified-by-github-comment %}
 
 on:
   push:
@@ -123,7 +123,7 @@ jobs:
     steps: {% raw %}
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}{% endraw %}
       - uses: actions/download-artifact@main
@@ -147,13 +147,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Log in to GitHub Docker Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
           registry: {% ifversion ghae %}docker.YOUR-HOSTNAME.com{% else %}docker.pkg.github.com{% endif %}
           username: {% raw %}${{ github.actor }}{% endraw %}
           password: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           push: true
           tags: |
@@ -251,7 +251,7 @@ run-npm-test:
   steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
     - uses: actions/download-artifact@main
@@ -312,7 +312,7 @@ permissions:
 {% raw %}
 ```yaml
 - name: Log in to the Container registry
-  uses: docker/login-action@v1
+  uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
   with:
     registry: ${{ env.REGISTRY }}
     username: ${{ github.actor }}
@@ -331,7 +331,7 @@ permissions:
 ```yaml
 - name: Extract metadata (tags, labels) for Docker
   id: meta
-  uses: docker/metadata-action@v3
+  uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
   with:
     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 ```
@@ -348,7 +348,7 @@ permissions:
 {% raw %}
 ```yaml
 - name: Log in to GitHub Docker Registry
-  uses: docker/login-action@v1
+  uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
   with:
     registry: {% endraw %}{% ifversion ghae %}docker.YOUR-HOSTNAME.com{% else %}docker.pkg.github.com{% endif %}{% raw %}
     username: ${{ github.actor }}
@@ -379,7 +379,7 @@ permissions:
 <td>
 {% raw %}
 ```yaml
-uses: docker/build-push-action@v2
+uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
 ```
 {% endraw %}
 </td>

@@ -30,6 +30,8 @@ In the tutorial, you will first make a workflow file that uses the [`imjohnbo/is
 3. Copy the following YAML contents into your workflow file.
 
     ```yaml{:copy}
+{% indented_data_reference reusables.actions.actions-not-certified-by-github-comment spaces=4 %}
+
     name: Weekly Team Sync
     on:
       schedule:
@@ -43,7 +45,7 @@ In the tutorial, you will first make a workflow file that uses the [`imjohnbo/is
           issues: write{% endif %}
         steps:
           - name: Create team sync issue
-            uses: imjohnbo/issue-bot@v3.0
+            uses: imjohnbo/issue-bot@3daae12aa54d38685d7ff8459fc8a2aee8cea98b
             with:
               assignees: "monalisa, doctocat, hubot"
               labels: "weekly sync, docs-team"
